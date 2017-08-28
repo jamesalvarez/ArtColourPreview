@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <title>Show Image Dimensions Locally</title>
+    <style type='text/css'>
+
+        body {
+            background-color: rgb(128,128,128);
+        }
+
+        #scroller {
+            overflow: scroll;
+            width: 48%;
+            height: 90%;
+            display: inline-block;
+            margin: 0 1%;
+        }
+
+        #colour-preview {
+            width: 48%;
+            height: 90%;
+            display: inline-block;
+            margin: 0 0;
+        }
+
+        #cursor{
+            position: absolute;
+            border: 1px dotted black;
+            pointer-events: none;
+            top: -100px;
+            left: -100px;
+        }
+
+        #image-controls {
+            display: none;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="artpreview.js"></script>
+</head>
+<body>
+<div id="cursor"></div>
+<form action='#' onsubmit="return false;">
+    <div id="load-controls">
+        <h2>Art Colour Preview</h2>
+        <p>
+            This tool allows you to drag around an image and display the colour in a bog box, which allows you to check
+            the colour on your palette.  You can increase the size of the window to get the average of the pixels within
+            that window.  For large images you can scroll the window with the image, to get to other areas!
+        </p>
+        <p>
+            <b>If you are matching paint colours, remember to adjust your monitor so that your brightest colour in the
+            photo can be achieved using your brightest white!  It's normally best to do this with a pure white, but for
+            a dark photo, you just need to make it so you can match the full range of colours using your paints.</b>
+        </p>
+        <p>
+            Choose a file to load:<br>
+            <br>
+            <input type='file' id='imgfile' />
+            <input type='button' id='btn-load' value='Load' onclick='loadImage();' />
+        </p>
+    </div>
+    <div id="image-controls">
+    <label for="averager">Averaging window size: </label><input id="averager" type="range" min="1" max="100" step="1"><br>
+    Colour:<span id="status"></span> 
+    </div>
+</form>
+<div id="scroller">
+    <canvas id="canvas"></canvas>
+
+</div>
+<div id="colour-preview"></div>
+
+
+</body>
